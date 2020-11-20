@@ -1,9 +1,9 @@
 import React from 'react';
 import Menu from 'antd/es/menu';
 
-const LeftMenu = () => {
+const LeftMenu = (props) => {
     return (
-        <Menu onClick={this.props.handleClick}>
+        <Menu onClick={props.handleClick}>
           <Menu.Item>
             alo
           </Menu.Item>

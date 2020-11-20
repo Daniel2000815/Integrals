@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
     const graphData= {
@@ -9,28 +9,30 @@ const Graph = (props) => {
             backgroundColor: 'rgba(75,192,192, 0.6)',
             highlightStroke: "rgba(220,220,220,1)",
             borderWidth: 0,
-            data: props.data
+            data: props.data,
+            pointBackgroundColor: 'rgba(0,0,0,0)',
+            pointBorderColor: 'rgba(0,0,0,0)'
           }
         ]
     }
 
     return (
         <span><div style={{ width: "500px" }}>
-            <Bar
+            <Line
                 data={graphData}
                 options={{
                     legend:{
-                        display: false
+                        display: false,
                     },
                    responsive: true,
-                   title: {text: props.title, display: true},
+                   title: {text: "Función de Densidad", display: true},
                    scales:{
                        yAxes:[
                            {
                                ticks:{
                                     autoSkip: true,
                                     beginAtZero: true,
-                                    min: 0,
+                                    maxTicksLimit: 2
                                }
                            }
                        ]
