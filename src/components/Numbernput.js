@@ -1,17 +1,19 @@
 import React from 'react';
-import { Input, Tooltip } from 'antd';
+import { Input, InputNumber, Tooltip } from 'antd';
 import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 
 const NumberInput = (props) => {
     return(
       <div>
-        <Input
+        <InputNumber
             style={{ width: '20%' }}
-            placeholder="Introduce un valor"
-            addonBefore= {props.text}
+            formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+      parser={value => value.replace(/\$\s?|(,*)/g, '')}
             onChange={props.handleChange}
+            defaultValue={props.default}
+            min={props.min}
+            max={props.max}
         />
-
       </div>
     )
 }

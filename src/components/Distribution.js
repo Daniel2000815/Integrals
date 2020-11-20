@@ -3,20 +3,32 @@ import Graph from './Graph';
 
 class Distribution extends Component{
  
+  /*
+  constructor(props){
+    super(props);
+
+    this.state={
+      media: 0,
+      varianza: 0,
+      desviacion: 0,
+    }
+
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.userID !== prevProps.userID) {
       // do stuf
     }
   }
+  */
 
   evaluateFunction(f, min, max, step){
     let data = [];
     let labels = [];
 
     for(var i=min; i<max; i+=step){
-      console.log("f(" + i + ") = " + f(i));
-        labels.push(i);
-        data.push(f(i));
+      labels.push(i);
+      data.push(f(i));
     }
 
     return [labels, data];
@@ -33,13 +45,10 @@ class Distribution extends Component{
     return result;
   }
 
-  constructor () {
-    super();
-  }
-
   render(){
-    let d = this.evaluateFunction(this.props.funcion, 2, 10, 0.01);
+    let d = this.evaluateFunction(this.props.funcion , 2, 10, 0.01);
     let r = this.integrateFunction(d[0], d[1], 5,6);
+
     return(
       <div> 
             <h1>{this.props.name}</h1>
