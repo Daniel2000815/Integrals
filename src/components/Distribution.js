@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; 
 import Graph from './Graph';
 import { Table, Tag, Space } from 'antd';
+import RangeSlider from '../components/Slider';
 
 const columns = [
   {
@@ -35,24 +36,15 @@ const data = [
 
 class Distribution extends Component{
  
-  /*
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
 
     this.state={
-      media: 0,
-      varianza: 0,
-      desviacion: 0,
+      min:0,
+      max:0
     }
 
   }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.userID !== prevProps.userID) {
-      // do stuf
-    }
-  }
-  */
 
   evaluateFunction(f, min, max, step){
     let data = [];
@@ -62,17 +54,16 @@ class Distribution extends Component{
     for(var i=min; i<max; i+=step){
       let labelRedondeada = Math.round(i*100)/100;
 
-      labels.push(i);
-      data.push(f(i));
+      labels.push(labelRedondeada);
+      data.push(f(labelRedondeada));
 
       if(labelRedondeada % 1 === 0){
         labelsSimple.push(labelRedondeada.toString());
-        console.log("añadir: " + labelRedondeada);
       }
       else
         labelsSimple.push('');
     }
-    console.log(labelsSimple);
+
     return [labels, data, labelsSimple];
   }
 
@@ -87,15 +78,20 @@ class Distribution extends Component{
     return result / (labels[1]-labels[0]);
   }
 
+  changeRange = (value) =>{
+    this.setState({min:value[0], max:value[1]});
+  }
+
   render(){
-    let d = this.evaluateFunction(this.props.funcion , 2, 10, 0.01);
+    let d = this.evaluateFunction(this.props.funcion , 1, 4, 0.01);
     let r = this.integrateFunction(d[0], d[1], 5,6);
 
     return(
       <div> 
             <div style={{width:"100%"}}>
-              <span style={{float: "left"}}><Graph labels={d[2]} data={d[1]}/></span>
+              <span style={{float: "left"}}><Graph min={this.state.min} max={this.state.max} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
               <span style={{top:"50%", float: "right"}}><Table pagination={{hideOnSinglePage:true}} columns={columns} dataSource={data}/></span>
+              <RangeSlider max={4} min={1} handleChange={this.changeRange}/>
             </div>
             <br></br>
             <p>Integral: {r}</p>

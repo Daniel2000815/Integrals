@@ -2,17 +2,41 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
+    console.log("min: " + props.labels.indexOf(props.min) + ", bb:" + props.labels.indexOf(props.max));
+    console.log([...props.data].slice(props.labels.indexOf(props.min), props.labels.indexOf(props.max)));
+    let minPos = props.labels.indexOf(props.min);
+    let maxPos = props.labels.indexOf(props.max);
+    let dataCopy = [...props.data];
+
+    for(var i=0; i<dataCopy.length; i++){
+        if(i<minPos || i>maxPos){
+            dataCopy[i] = 0;
+        }
+    }
+
     const graphData= {
-        labels: props.labels,
+        labels: props.labelsSimple,
         datasets: [
-          {
-            backgroundColor: 'rgba(75,192,192, 0.6)',
+            {
+                label: "2",
+                backgroundColor: "rgba(0, 181, 204, 0.6)",
+                highlightStroke: "rgba(220,220,220,0.6)",
+                borderWidth: 0,
+                data: dataCopy,
+                pointBackgroundColor: 'rgba(0,0,0,0)',
+                pointBorderColor: 'rgba(0,0,0,0)'
+              },
+            {
+            label: "1",
+            backgroundColor: "rgba(30, 139, 195, 0.6)",
             highlightStroke: "rgba(220,220,220,1)",
             borderWidth: 0,
             data: props.data,
             pointBackgroundColor: 'rgba(0,0,0,0)',
             pointBorderColor: 'rgba(0,0,0,0)'
-          }
+            }
+          
+
         ]
     }
 
