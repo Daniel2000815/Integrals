@@ -30,12 +30,20 @@ const Graph = (props) => {
                        yAxes:[
                            {
                                ticks:{
-                                    autoSkip: true,
                                     beginAtZero: true,
-                                    maxTicksLimit: 2
                                }
                            }
-                       ]
+                       ],
+                       xAxes:[
+                        {
+                            ticks:{
+                                autoSkip: false
+                            },
+                            gridLines:{
+                                display: false
+                            }
+                        }
+                    ]
                    }
                 }}
             />

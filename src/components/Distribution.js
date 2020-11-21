@@ -1,5 +1,37 @@
 import React, {Component} from 'react'; 
 import Graph from './Graph';
+import { Table, Tag, Space } from 'antd';
+
+const columns = [
+  {
+    title: 'Media',
+    dataIndex: 'm',
+    key: 'm',
+    width: "200px"
+  },
+  {
+    title: 'Varianza',
+    dataIndex: 'v',
+    key: 'v',
+    width: "200px"
+  },
+  {
+    title: 'Desviación Típica',
+    dataIndex: 'd',
+    key: 'd',
+    width: "200px"
+  }
+
+];
+
+const data = [
+  {
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  }
+]
 
 class Distribution extends Component{
  
@@ -25,13 +57,23 @@ class Distribution extends Component{
   evaluateFunction(f, min, max, step){
     let data = [];
     let labels = [];
+    let labelsSimple = [];
 
     for(var i=min; i<max; i+=step){
+      let labelRedondeada = Math.round(i*100)/100;
+
       labels.push(i);
       data.push(f(i));
-    }
 
-    return [labels, data];
+      if(labelRedondeada % 1 === 0){
+        labelsSimple.push(labelRedondeada.toString());
+        console.log("añadir: " + labelRedondeada);
+      }
+      else
+        labelsSimple.push('');
+    }
+    console.log(labelsSimple);
+    return [labels, data, labelsSimple];
   }
 
   integrateFunction(labels, data, min, max){
@@ -39,10 +81,10 @@ class Distribution extends Component{
 
     for(var i=0; i<labels.length-1; i++){
       if(labels[i]>=min && labels[i]<max)
-        result += (labels[i+1]-labels[i]) * data[i];
+        result += data[i];
     }
 
-    return result;
+    return result / (labels[1]-labels[0]);
   }
 
   render(){
@@ -51,8 +93,11 @@ class Distribution extends Component{
 
     return(
       <div> 
-            <h1>{this.props.name}</h1>
-            <Graph labels={d[0]} data={d[1]}/>
+            <div style={{width:"100%"}}>
+              <span style={{float: "left"}}><Graph labels={d[2]} data={d[1]}/></span>
+              <span style={{top:"50%", float: "right"}}><Table pagination={{hideOnSinglePage:true}} columns={columns} dataSource={data}/></span>
+            </div>
+            <br></br>
             <p>Integral: {r}</p>
             <p>Atributos: {this.props.lambda}</p>
       </div>
