@@ -7,7 +7,7 @@ const RangeSlider = (props) => {
 
     return(
         <div>
-        <span style={{width:"500px", float:"right"}}>
+        <span style={{width:props.width, float:"right"}}>
         <Slider 
             range defaultValue={[props.min, props.max]} 
             step={1} 

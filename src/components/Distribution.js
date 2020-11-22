@@ -1,38 +1,9 @@
 import React, {Component} from 'react'; 
 import Graph from './Graph';
-import { Table, Tag, Space } from 'antd';
 import RangeSlider from '../components/Slider';
+import MyTable from '../components/Table'
 
-const columns = [
-  {
-    title: 'Media',
-    dataIndex: 'm',
-    key: 'm',
-    width: "200px"
-  },
-  {
-    title: 'Varianza',
-    dataIndex: 'v',
-    key: 'v',
-    width: "200px"
-  },
-  {
-    title: 'Desviación Típica',
-    dataIndex: 'd',
-    key: 'd',
-    width: "200px"
-  }
 
-];
-
-const data = [
-  {
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  }
-]
 
 class Distribution extends Component{
  
@@ -45,6 +16,8 @@ class Distribution extends Component{
     }
 
   }
+
+  
 
   evaluateFunction(f, min, max, step){
     let data = [];
@@ -90,8 +63,8 @@ class Distribution extends Component{
       <div> 
             <div style={{width:"100%"}}>
               <span style={{float: "left"}}><Graph min={this.state.min} max={this.state.max} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
-              <span style={{top:"50%", float: "right"}}><Table pagination={{hideOnSinglePage:true}} columns={columns} dataSource={data}/></span>
-              <RangeSlider max={4} min={1} handleChange={this.changeRange}/>
+              <span style={{top:"50%", float: "right"}}> <MyTable media={this.props.media} varianza={this.props.varianza}/> </span>
+              <RangeSlider width="500px" max={4} min={1} handleChange={this.changeRange}/>
             </div>
             <br></br>
             <p>Integral: {r}</p>

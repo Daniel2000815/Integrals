@@ -4,7 +4,6 @@ import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 
 const NumberInput = (props) => {
     return(
-      <div>
         <Input
             addonBefore={props.text}
             type={"number"}
@@ -14,7 +13,6 @@ const NumberInput = (props) => {
             min={props.min}
             max={props.max}
         />
-      </div>
     )
 }
 
