@@ -2,12 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 const Graph = (props) => {
-    console.log("min: " + props.labels.indexOf(props.min) + ", bb:" + props.labels.indexOf(props.max));
-    console.log([...props.data].slice(props.labels.indexOf(props.min), props.labels.indexOf(props.max)));
     let minPos = props.labels.indexOf(props.min);
     let maxPos = props.labels.indexOf(props.max);
     let dataCopy = [...props.data];
-
+    console.log(props.min);
     for(var i=0; i<dataCopy.length; i++){
         if(i<minPos || i>maxPos){
             dataCopy[i] = 0;

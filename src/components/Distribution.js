@@ -11,8 +11,8 @@ class Distribution extends Component{
     super();
 
     this.state={
-      min:0,
-      max:0
+      limitInf:0,
+      limitMax:0
     }
 
   }
@@ -23,10 +23,10 @@ class Distribution extends Component{
     let data = [];
     let labels = [];
     let labelsSimple = [];
+    let factor = 1/step;
 
-    for(var i=min; i<max; i+=step){
-      let labelRedondeada = Math.round(i*100)/100;
-
+    for(var i=min*factor; i<=max*factor; i++){
+      let labelRedondeada = Math.round((i/factor) *100)/100;
       labels.push(labelRedondeada);
       data.push(f(labelRedondeada));
 
@@ -48,23 +48,23 @@ class Distribution extends Component{
         result += data[i];
     }
 
-    return result / (labels[1]-labels[0]);
+    return (result * this.props.step).toFixed(4);
   }
 
   changeRange = (value) =>{
-    this.setState({min:value[0], max:value[1]});
+    this.setState({limitInf:value[0], limitMax:value[1]});
   }
 
   render(){
-    let d = this.evaluateFunction(this.props.funcion , 1, 4, 0.01);
-    let r = this.integrateFunction(d[0], d[1], 5,6);
+    let d = this.evaluateFunction(this.props.funcion , this.props.min, this.props.max, this.props.step);
+    let r = this.integrateFunction(d[0], d[1], this.state.limitInf, this.state.limitMax);
 
     return(
       <div> 
             <div style={{width:"100%"}}>
-              <span style={{float: "left"}}><Graph min={this.state.min} max={this.state.max} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
+              <span style={{float: "left"}}><Graph min={this.state.limitInf} max={this.state.limitMax} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
               <span style={{top:"50%", float: "right"}}> <MyTable media={this.props.media} varianza={this.props.varianza}/> </span>
-              <RangeSlider width="500px" max={4} min={1} handleChange={this.changeRange}/>
+              <RangeSlider step={this.props.step} width="500px" max={this.props.max} min={this.props.min} handleChange={this.changeRange}/>
             </div>
             <br></br>
             <p>Integral: {r}</p>

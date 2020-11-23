@@ -10,10 +10,11 @@ const RangeSlider = (props) => {
         <span style={{width:props.width, float:"right"}}>
         <Slider 
             range defaultValue={[props.min, props.max]} 
-            step={1} 
+            step={props.step} 
             min={props.min} 
             max={props.max} 
-            onChange={props.handleChange}
+            onAfterChange={props.handleChange}
+            disabled={props.disabled}
         />
         </span>
         </div>
