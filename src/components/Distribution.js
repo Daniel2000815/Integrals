@@ -59,35 +59,36 @@ class Distribution extends Component{
     let d = this.evaluateFunction(this.props.funcion , this.props.min, this.props.max, this.props.step);
     let r = this.integrateFunction(d[0], d[1], this.state.limitInf, this.state.limitMax);
 
-    let mediaString = this.props.media.toString();
-    let varianzaString = this.props.varianza.toString();
-    let desviacionString = this.props.varianza**(0.5).toString();
+    let mediaString = this.props.media.toFixed(4).toString();
+    let varianzaString = this.props.varianza.toFixed(4).toString();
+    let desviacionString = (this.props.varianza**(0.5)).toFixed(4).toString();
 
     return(
-      <div>
-      <div> 
-            <div style={{width:"100%"}}>
-              <span style={{float: "left"}}><Graph min={this.state.limitInf} max={this.state.limitMax} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
-              <RangeSlider step={this.props.step} width="500px" max={this.props.max} min={this.props.min} handleChange={this.changeRange}/>
-            </div>
-            <br></br>
-            <p>Integral: {r}</p>
-            <p>Atributos: {this.props.lambda}</p>
-      </div>
-      <div style={{width: "100px",
-        position: "relative",
-        verticalAlign: "center",
-        marginTop:"150px",
-        height: "100px",
-        }}>
-      <MyTable 
-        stringMedia={this.props.stringMedia + "=" + mediaString} 
-        stringVarianza={this.props.stringVarianza + "="+ varianzaString}
-        stringDesviacion={this.props.stringDesviacion +"="+ desviacionString}
-        stringFuncionMasa = {this.props.stringFuncionMasa}
-        stringFuncionDensidad={this.props.stringFuncionDensidad}/>
-
-      </div>
+      <div style={{marginTop:"-190px"}}>
+        <div style={{float:"left"}}> 
+          <Graph min={this.state.limitInf} max={this.state.limitMax} labels={d[0]} labelsSimple={d[2]} data={d[1]}/>
+        </div>
+        <div style={{float:"left", marginLeft:"50px",marginTop:"100px"}}>
+          Calcular probabilidad en el rango:
+          <RangeSlider step={this.props.step} width="500px" max={this.props.max} min={this.props.min} handleChange={this.changeRange}/>
+          Resultado: {r}
+        </div>
+            
+        
+        <div style={{
+          position: "relative",
+          verticalAlign: "center",
+          marginTop:"200px",
+          height: "90px",
+          }}>
+        <MyTable 
+          stringMedia={this.props.stringMedia + "=" + mediaString} 
+          stringVarianza={this.props.stringVarianza + "="+ varianzaString}
+          stringDesviacion={this.props.stringDesviacion +"="+ desviacionString}
+          stringFuncionMasa = {this.props.stringFuncionMasa}
+          stringFuncionDensidad={this.props.stringFuncionDensidad}
+          stringFuncionMomentos={this.props.stringFuncionMomentos}/>
+        </div>
       </div>
     )
   }

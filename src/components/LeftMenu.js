@@ -3,7 +3,7 @@ import Menu from 'antd/es/menu';
 
 const LeftMenu = (props) => {
     return (
-        <Menu style={{width:"200px"}} mode="inline" onClick={props.handleClick}>
+        <Menu style={{width:"200px"}} mode="inline" onSelect={props.handleChange}>
           <Menu.SubMenu
           key="sub4"
           title={

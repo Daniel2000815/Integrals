@@ -19,6 +19,12 @@ function MyTable(props) {
             width: "200px"
         },
         {
+            title: 'F.G. Momentos',
+            dataIndex: 'momen',
+            key: 'd',
+            width: "200px"
+        },
+        {
         title: 'Media',
         dataIndex: 'm',
         key: 'm',
@@ -34,7 +40,7 @@ function MyTable(props) {
         title: 'Desviación Típica',
         dataIndex: 'd',
         key: 'd',
-        width: "200px"
+        width: '70%'
         }
     
     ];
@@ -45,7 +51,8 @@ function MyTable(props) {
         v:<BlockMath math={props.stringVarianza}/>,
         d:<BlockMath math={props.stringDesviacion}/>,
         fd:<BlockMath math={props.stringFuncionDensidad}/>,
-        fm:<BlockMath math={props.stringFuncionMasa}/>
+        fm:<BlockMath math={props.stringFuncionMasa}/>,
+        momen:<BlockMath math={props.stringFuncionMomentos}/>
         }
     ]
 

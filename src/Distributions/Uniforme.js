@@ -26,11 +26,12 @@ function Uniforme() {
             media = {(b+a)/2}
             varianza = {(b-a)**2 / 12}
             step = {0.01}
-            stringMedia= {"\\frac{b+a}{2}"}
-            stringVarianza={"\\frac{(b-a)^{2}}{12}"}
-            stringDesviacion={"\\sqrt{\\frac{(b-a)^{2}}{12}}"}
+            stringMedia= {"E[X]=\\frac{b+a}{2}"}
+            stringVarianza={"Var[X]=\\frac{(b-a)^{2}}{12}"}
+            stringDesviacion={"\\sigma(X)=\\sqrt{\\frac{(b-a)^{2}}{12}}"}
             stringFuncionDensidad={"f(x)=\\frac{1}{b-a}"}
-            stringFuncionMasa={"F(x)="}
+            stringFuncionMasa={"F(x)=\\frac{x-a}{b-a}"}
+            stringFuncionMomentos={"M(t)=\\frac{e^{bt}-e^{at}}{t(b-a)}"}
         />
         </div>
         
