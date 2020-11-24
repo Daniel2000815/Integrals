@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Graph from './Graph';
 import RangeSlider from '../components/Slider';
 import MyTable from '../components/Table'
-
+import Latex from 'react-latex';
 
 
 class Distribution extends Component{
@@ -59,16 +59,35 @@ class Distribution extends Component{
     let d = this.evaluateFunction(this.props.funcion , this.props.min, this.props.max, this.props.step);
     let r = this.integrateFunction(d[0], d[1], this.state.limitInf, this.state.limitMax);
 
+    let mediaString = this.props.media.toString();
+    let varianzaString = this.props.varianza.toString();
+    let desviacionString = this.props.varianza**(0.5).toString();
+
     return(
+      <div>
       <div> 
             <div style={{width:"100%"}}>
               <span style={{float: "left"}}><Graph min={this.state.limitInf} max={this.state.limitMax} labels={d[0]} labelsSimple={d[2]} data={d[1]}/></span>
-              <span style={{top:"50%", float: "right"}}> <MyTable media={this.props.media} varianza={this.props.varianza}/> </span>
               <RangeSlider step={this.props.step} width="500px" max={this.props.max} min={this.props.min} handleChange={this.changeRange}/>
             </div>
             <br></br>
             <p>Integral: {r}</p>
             <p>Atributos: {this.props.lambda}</p>
+      </div>
+      <div style={{width: "100px",
+        position: "relative",
+        verticalAlign: "center",
+        marginTop:"150px",
+        height: "100px",
+        }}>
+      <MyTable 
+        stringMedia={this.props.stringMedia + "=" + mediaString} 
+        stringVarianza={this.props.stringVarianza + "="+ varianzaString}
+        stringDesviacion={this.props.stringDesviacion +"="+ desviacionString}
+        stringFuncionMasa = {this.props.stringFuncionMasa}
+        stringFuncionDensidad={this.props.stringFuncionDensidad}/>
+
+      </div>
       </div>
     )
   }

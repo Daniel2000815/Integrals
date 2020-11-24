@@ -5,7 +5,7 @@ import Breadcrumb from 'antd/lib/breadcrumb';
 
 const Body = () => {
     return(
-      <div style={{background:"#fff", padding:25, minHeight:500}}>
+      <div style={{background:"#fff", padding:25, minHeight:530}}>
       <Breadcrumb>
         <BreadcrumbItem>
           <Uniforme a={2} b={3}/>

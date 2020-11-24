@@ -3,6 +3,8 @@ import Distribution from '../components/Distribution';
 import NumberInput from '../components/Numbernput';
 import RangeSlider from '../components/Slider';
 
+
+
 //             <span ><RangeSlider width="1110px" disabled={true} max={100} min={0} handleChange={(value) => {setMin(value[0]); setMax(value[1])}}/></span>
 
 function Uniforme() {
@@ -24,6 +26,11 @@ function Uniforme() {
             media = {(b+a)/2}
             varianza = {(b-a)**2 / 12}
             step = {0.01}
+            stringMedia= {"\\frac{b+a}{2}"}
+            stringVarianza={"\\frac{(b-a)^{2}}{12}"}
+            stringDesviacion={"\\sqrt{\\frac{(b-a)^{2}}{12}}"}
+            stringFuncionDensidad={"f(x)=\\frac{1}{b-a}"}
+            stringFuncionMasa={"F(x)="}
         />
         </div>
         

@@ -1,10 +1,23 @@
 import React, {Component} from 'react'; 
 import { Table, Tag, Space } from 'antd';
-
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 function MyTable(props) {
 
     const columns = [
+        {
+            title: 'Fución Densidad',
+            dataIndex: 'fd',
+            key: 'm',
+            width: "200px"
+        },
+        {
+            title: 'Fución Masa Probabilidad',
+            dataIndex: 'fm',
+            key: 'm',
+            width: "200px"
+        },
         {
         title: 'Media',
         dataIndex: 'm',
@@ -28,9 +41,11 @@ function MyTable(props) {
 
     const data = [
         {
-        m:props.media,
-        v:props.varianza,
-        d:props.varianza**(0.5)
+        m:<BlockMath math={props.stringMedia}/>,
+        v:<BlockMath math={props.stringVarianza}/>,
+        d:<BlockMath math={props.stringDesviacion}/>,
+        fd:<BlockMath math={props.stringFuncionDensidad}/>,
+        fm:<BlockMath math={props.stringFuncionMasa}/>
         }
     ]
 
