@@ -10,6 +10,9 @@ import Body from './components/Body';
 
 import Uniforme from './Distributions/Uniforme';
 import Normal from './Distributions/Normal';
+import Exponencial from './Distributions/Exponencial';
+import Erlang from './Distributions/Erlang';
+import Gamma from './Distributions/Gamma';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -29,6 +32,12 @@ function App() {
       return <Uniforme a={2} b={3}/>;
     else if (key === "normal")
       return <Normal mu={1} sigma={1}/>;
+    else if (key === "exponencial")
+      return <Exponencial lambda={1}/>;
+    else if (key === "erlang")
+      return <Erlang lambda={1} k={1}/>;
+    else if (key === "gamma")
+      return <Gamma lambda={1} k={1}/>;
   }
 
   return (
