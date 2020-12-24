@@ -4,7 +4,7 @@ import Breadcrumb from 'antd/lib/breadcrumb';
 
 const Body = (props) => {
     return(
-      <div style={{background:"#fff", padding:25, minHeight:530}}>
+      <div style={{background:"#fff", padding:25, minHeight:520}}>
       <Breadcrumb>
         <BreadcrumbItem>
           {props.distribution}

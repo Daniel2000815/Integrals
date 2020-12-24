@@ -13,6 +13,7 @@ import Normal from './Distributions/Normal';
 import Exponencial from './Distributions/Exponencial';
 import Erlang from './Distributions/Erlang';
 import Gamma from './Distributions/Gamma';
+import Beta from './Distributions/Beta';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -38,6 +39,8 @@ function App() {
       return <Erlang lambda={1} k={1}/>;
     else if (key === "gamma")
       return <Gamma lambda={1} k={1}/>;
+    else if (key === "beta")
+      return <Beta alfa={1} beta={1}/>;
   }
 
   return (
@@ -48,7 +51,7 @@ function App() {
           <Sider><LeftMenu handleChange={(e) => setMenuState(e)}/></Sider>
           <Layout>
             <Content><Body distribution = {renderFromMenu(menuState)}/></Content>
-            <Footer>Footer</Footer>
+            <Footer style={{height:"50px"}}>Daniel Zufrí Quesada</Footer>
           </Layout>
         </Layout>
       </Layout>
